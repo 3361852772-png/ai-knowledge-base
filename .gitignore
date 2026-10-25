@@ -1,5 +1,6 @@
 key.txt
 kb/
+models/
 __pycache__/
 *.pyc
 .env

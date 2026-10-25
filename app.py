@@ -5,7 +5,7 @@ from openai import OpenAI
 
 @st.cache_resource
 def load():
-    m = TextEmbedding("BAAI/bge-small-zh-v1.5", cache_dir="C:/Users/Lenovo/CherryModels")
+    m = TextEmbedding("BAAI/bge-small-zh-v1.5", cache_dir="models")
     return m
 
 @st.cache_resource
@@ -15,9 +15,12 @@ def load_col():
                                                                                
 @st.cache_resource
 def load_client():
-    f = open("key.txt", "r", encoding="UTF-8")
-    key = f.read().strip()
-    f.close()
+    try:
+        key = st.secrets["DEEPSEEK_KEY"]
+    except Exception:
+        f = open("key.txt", "r", encoding="UTF-8")
+        key = f.read().strip()
+        f.close()
     return OpenAI(api_key=key, base_url="https://api.deepseek.com")
 
 m = load()
