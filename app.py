@@ -3,6 +3,15 @@ from fastembed import TextEmbedding
 import chromadb
 from openai import OpenAI
 
+try:
+    mima_zhengque = st.secrets["MIMA"]
+except Exception:
+    mima_zhengque = "123456"
+
+mima = st.text_input("请输入密码", type="password")
+if mima != mima_zhengque:
+    st.stop()
+
 @st.cache_resource
 def load():
     m = TextEmbedding("BAAI/bge-small-zh-v1.5", cache_dir="models")
