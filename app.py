@@ -26,6 +26,8 @@ def load_client():
 m = load()
 col = load_col()
 client = load_client()
+st.info("先上传一个 txt 文件，再在下面的聊天框里针对资料提问。")
+st.warning("本应用使用作者本人的 DeepSeek API key，按次计费，请勿滥用。")
 up = st.file_uploader("上传一个 txt 文件", type="txt")
 if up:
     zhi = up.read().decode("utf-8")
